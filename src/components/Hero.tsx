@@ -60,7 +60,7 @@ const Hero = () => {
             style={{ transitionDelay: "600ms" }}
           >
             Cinematic brand stories{" "}
-            <span className="text-muted-foreground">optimized to engage</span>
+            <span className="text-primary">optimized to engage</span>
           </h2>
 
           {/* CTA Buttons */}
