@@ -8,16 +8,16 @@ const projects = [
     title: "Adidas: Not Sorry",
     subtitle: "(Fifa Women's World Cup)",
     roles: ["post producer"],
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64e62766740502c22ca8ebc0_Adidas%20Fifa.png",
+    thumbnail: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64e62766740502c22ca8ebc0_Adidas%20Fifa.png",
+    videoUrl: "https://youtu.be/7kVG571frGE",
     description:
       "Adidas Canada is focusing on how a Team Canada star is knocking over obstacles to success in the women's game. Longtime Adidas ambassador and Canadian national team player Ashley Lawrence talks about how she has subverted expectations, eschewing pink bedrooms and desk work to instead achieve a dream some might have called 'impossible'.",
-    videoUrl: "https://youtu.be/7kVG571frGE",
     credits: [
       { role: "Client", name: "Adidas" },
       { role: "Agency", name: "Salt XC" },
       { role: "Exec. Producer", name: "Devon Soltendieck" },
       { role: "Creative Director", name: "Brad Van Schaik" },
-      { role: "Post Producer", name: "Sahil Lulla" },
+      { role: "Post Producer", name: "Pixelnova" },
       { role: "Picture Editor", name: "Jeffrey Sarkodie" },
       { role: "Color", name: "Artjail" },
     ],
@@ -27,15 +27,15 @@ const projects = [
     category: "digital commercial",
     title: "Adidas: Terrex",
     roles: ["offline editor", "online editor", "motion designer"],
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b6ca471ca7b21f229feeee_terrex.png",
+    thumbnail: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b6ca471ca7b21f229feeee_terrex.png",
+    videoUrl: "#",
     description:
       "Conquering Terrain with typography that moves. Where seamless integration of motion-tracked 3D text with captivating and dynamic typography, mirroring the athletes' agility and resilience. Bold phrases leap, twist, and inspire, igniting a desire to conquer any terrain.",
-    videoUrl: "#",
     credits: [
       { role: "Client", name: "Adidas" },
       { role: "Agency", name: "Salt XC" },
-      { role: "Picture Editor", name: "Sahil Lulla" },
-      { role: "Motion Designer", name: "Sahil Lulla" },
+      { role: "Picture Editor", name: "Pixelnova" },
+      { role: "Motion Designer", name: "Pixelnova" },
       { role: "Color", name: "Artjail" },
     ],
   },
@@ -44,15 +44,15 @@ const projects = [
     category: "broadcast commercial",
     title: "Adidas: Int'l Women's Day",
     roles: ["offline editor", "online editor", "post producer"],
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b194be718998f26af1e964_Adidas%20Spooner%20image%20%201.png",
+    thumbnail: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b194be718998f26af1e964_Adidas%20Spooner%20image%20%201.png",
+    videoUrl: "https://youtu.be/7kVG571frGE",
     description:
       "We had the opportunity to create a powerful TV spot for Adidas Canada in celebration of International Women's Day. It tells the inspiring story of Natalie Spooner, a professional hockey player who returned to the ice just 6 weeks after giving birth. Her incredible strength and resilience serve as a symbol for women around the world.",
-    videoUrl: "https://youtu.be/7kVG571frGE",
     credits: [
       { role: "Client", name: "Adidas" },
       { role: "Agency", name: "Salt XC" },
       { role: "Exec. Producer", name: "Devon Soltendieck" },
-      { role: "Picture Editor", name: "Sahil Lulla" },
+      { role: "Picture Editor", name: "Pixelnova" },
       { role: "Color", name: "Artjail" },
     ],
   },
@@ -61,15 +61,15 @@ const projects = [
     category: "RBC x TIFF",
     title: "Growing Support: Cinema",
     roles: ["offline Editor", "online editor", "post producer"],
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b19c2a718998f26afc075c_tiff%20image%20banner.png",
+    thumbnail: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b19c2a718998f26afc075c_tiff%20image%20banner.png",
+    videoUrl: "https://youtu.be/auJvioranyk",
     description:
       "Bringing the Magic of Filmmaking to Life. Created for RBC's sponsorship of the Toronto International Film Festival (TIFF), this 30-second cinema spot celebrates the transformative power of filmmaking. Like the festival it promotes, this commercial captures the essence of how film inspires and brings people together.",
-    videoUrl: "https://youtu.be/auJvioranyk",
     credits: [
       { role: "Client", name: "RBC" },
       { role: "Agency", name: "SALT XC" },
       { role: "Director", name: "Mike Mildon" },
-      { role: "Picture Editor", name: "Sahil Lulla" },
+      { role: "Picture Editor", name: "Pixelnova" },
       { role: "Color", name: "Company3" },
     ],
   },
@@ -78,15 +78,15 @@ const projects = [
     category: "digital commercial",
     title: "Women's National Team",
     roles: ["post-producer", "colorist", "offline Editor"],
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b8251198474f9af58c06d2_Screen%20Shot%202023-07-19%20at%201.58.png",
+    thumbnail: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b8251198474f9af58c06d2_Screen%20Shot%202023-07-19%20at%201.58.png",
+    videoUrl: "#",
     description:
       "In collaboration with Toyota, we crafted a series of deeply resonant and inspirational spots for Team Canada's Women's National Soccer Team. This project, focusing on empowering young girls with big soccer dreams, stands as a testament to seamless teamwork and trust.",
-    videoUrl: "#",
     credits: [
       { role: "Client", name: "Toyota" },
       { role: "Agency", name: "SALT XC" },
-      { role: "Picture Editor", name: "Sahil Lulla" },
-      { role: "Colorist", name: "Sahil Lulla" },
+      { role: "Picture Editor", name: "Pixelnova" },
+      { role: "Colorist", name: "Pixelnova" },
     ],
   },
   {
@@ -94,16 +94,16 @@ const projects = [
     category: "theatrical trailer",
     title: "Amazon Prime: Neeyat",
     roles: ["creative producer", "offline Editor", "offline sound"],
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b6c84a7ac0d2ed7e79e8ae_neeyat.jpg",
+    thumbnail: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b6c84a7ac0d2ed7e79e8ae_neeyat.jpg",
+    videoUrl: "#",
     description:
       "This Bollywood thriller-comedy whodunnit trailer, produced for Amazon Prime, expertly balances suspense and humor without spoiling the film's twists. Garnering over 20 million views on YouTube and widespread industry acclaim, this trailer sets itself apart with its clever structure and pacing.",
-    videoUrl: "#",
     credits: [
       { role: "Client", name: "Abunduntia Entertainment" },
       { role: "Agency", name: "Elloel Studios" },
       { role: "Producer", name: "Jovy Philip" },
-      { role: "Creative Producer", name: "Sahil Lulla" },
-      { role: "Picture Editor", name: "Sahil Lulla" },
+      { role: "Creative Producer", name: "Pixelnova" },
+      { role: "Picture Editor", name: "Pixelnova" },
     ],
   },
 ];
@@ -138,11 +138,11 @@ const Portfolio = () => {
         {/* Portfolio Slider */}
         <div className="relative">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Image */}
+            {/* Video Thumbnail */}
             <div className="relative group">
               <div className="aspect-video overflow-hidden rounded-lg">
                 <img
-                  src={currentProject.image}
+                  src={currentProject.thumbnail}
                   alt={currentProject.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />

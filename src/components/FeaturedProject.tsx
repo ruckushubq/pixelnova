@@ -5,7 +5,7 @@ interface FeaturedProjectProps {
   brandName: string;
   title: string;
   videoUrl: string;
-  backgroundImage?: string;
+  thumbnailUrl: string;
 }
 
 const FeaturedProject = ({
@@ -13,21 +13,24 @@ const FeaturedProject = ({
   brandName,
   title,
   videoUrl,
-  backgroundImage,
+  thumbnailUrl,
 }: FeaturedProjectProps) => {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background */}
-      {backgroundImage && (
-        <div className="absolute inset-0">
-          <img
-            src={backgroundImage}
-            alt=""
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/70" />
-        </div>
-      )}
+      {/* Background Video */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={thumbnailUrl}
+          className="w-full h-full object-cover opacity-30"
+        >
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/70" />
+      </div>
 
       <div className="relative container mx-auto px-6 md:px-12">
         <div className="max-w-2xl">

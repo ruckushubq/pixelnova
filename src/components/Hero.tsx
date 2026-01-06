@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
-import heroImage from "@/assets/hero-mountain.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,13 +18,17 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Video with Overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Mountain peaks at sunset"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover"
-        />
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
       </div>
@@ -39,7 +43,7 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: "200ms" }}
           >
-            8,400 PEAKS
+            PIXELNOVA
           </h1>
 
           {/* Role Tags */}
@@ -49,7 +53,7 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: "400ms" }}
           >
-            Editor — Producer — Colorist
+            Production — Post — Creative
           </p>
 
           {/* Tagline */}
@@ -70,13 +74,13 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: "800ms" }}
           >
-            <button className="cta-button-outline">My resumé</button>
+            <button className="cta-button-outline">Our Work</button>
             <button
               onClick={() => scrollToSection("portfolio")}
               className="cta-button flex items-center gap-2"
             >
               <Play size={16} fill="currentColor" />
-              WATCH NOW
+              WATCH SHOWREEL
             </button>
           </div>
         </div>

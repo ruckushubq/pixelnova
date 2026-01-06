@@ -21,6 +21,7 @@ const Index = () => {
         brandName="Adidas"
         title="International Women's Day Broadcast :30s"
         videoUrl="https://youtu.be/7kVG571frGE"
+        thumbnailUrl="https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b194be718998f26af1e964_Adidas%20Spooner%20image%20%201.png"
       />
       <Services />
       <FeaturedProject
@@ -28,6 +29,7 @@ const Index = () => {
         brandName="RBC"
         title="Growing Support Cinema :30s"
         videoUrl="https://youtu.be/auJvioranyk"
+        thumbnailUrl="https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b19c2a718998f26afc075c_tiff%20image%20banner.png"
       />
       <About />
       <Portfolio />
