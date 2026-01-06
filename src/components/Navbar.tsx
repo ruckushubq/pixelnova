@@ -25,9 +25,9 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Signature Logo */}
-        <a href="#" className="signature-text">
-          Sahil Lulla
+        {/* Logo */}
+        <a href="#" className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+          PIXEL<span className="text-primary">NOVA</span>
         </a>
 
         {/* Navigation Links - Desktop */}
