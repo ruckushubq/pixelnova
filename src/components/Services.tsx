@@ -1,116 +1,86 @@
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 const services = [
   {
-    id: "editing",
-    title: "Picture Editing",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b50365b67156937609a743_Asset%205%404x.png",
-    bullets: [
-      "Offline & Online Editing",
-      "Skilled in Premiere Pro, Final Cut Pro X, and DaVinci Resolve",
-      "Support with narrative and conceptual builds by providing visual treatments",
-    ],
+    id: "01",
+    title: "Video Editing",
+    accent: "Video",
     description:
-      "Equipped with sharp cinematic intuition and a deep understanding of storytelling, I meticulously piece together each frame to create a compelling story that resonates. Whether it's commercial spots, or branded content for social, I breathe life into every project with precision and flair.",
+      "Full post-production from assembly to final delivery. Narrative pacing, seamless transitions, and the polish that separates amateur from professional.",
   },
   {
-    id: "motion",
-    title: "Motion Design",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b505eaeac4a26bc496a4ee_Asset%201%404x.png",
-    bullets: [
-      "Skilled in After Effects and complimentary Adobe Suite products",
-      "Supports with concept generation and art direction",
-      "Visual effects pipeline experience",
-    ],
-    description:
-      "Make your stories move in captivating ways with motion design. By blending creativity and technology, I design and animate graphics that add depth, excitement, and visual interest to your content. Through strategic motion design, I can help transform your narrative into a dynamic visual experience that engages and converts.",
-  },
-  {
-    id: "color",
+    id: "02",
     title: "Color Grading",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b508cff2877ee7c82d28a4_color%20grading.png",
-    bullets: [
-      "Proficiency in DaVinci Resolve",
-      "Visual style creation and shot matching",
-      "Skin tone correction",
-    ],
+    accent: "Color",
     description:
-      "Transform the visual aesthetics of your footage with professional color grading services. Leveraging my expertise in DaVinci Resolve, I can enhance mood, direct viewers' focus, and bring out the best in every shot. Whether you seek a subtle enhancement or a bold, stylized look, I can help bring your vision to life.",
+      "Cinematic color science that sets the mood. From LOG to final grade, we make every frame look exactly how it should feel.",
   },
   {
-    id: "producing",
-    title: "Post Producing",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b50c73720955c1fec12eb4_Asset%203%404x.png",
-    bullets: [
-      "Comprehensive project planning and coordination",
-      "Effective resource and budget management",
-      "Successful stakeholder collaboration",
-    ],
+    id: "03",
+    title: "Sound Design",
+    accent: "Sound",
     description:
-      "Streamline your project from inception to completion with post-production management. As an experienced post-producer, I coordinate, manage, and oversee every aspect of the post-production process, ensuring quality, efficiency, and adherence to budget and timeline. From managing multiple stakeholders to creating project plans and budgets, I am your reliable partner in delivering successful projects.",
+      "Audio mixing, Foley, and soundscaping. Because great video is 50% what you hear. We make sure every sound hits right.",
+  },
+  {
+    id: "04",
+    title: "Motion Graphics",
+    accent: "Motion",
+    description:
+      "Titles, lower thirds, animated elements. When static isn't enough, we add movement that enhances without overwhelming.",
   },
 ];
 
 const Services = () => {
-  const [activeTab, setActiveTab] = useState("editing");
-  const activeService = services.find((s) => s.id === activeTab);
-
   return (
     <section id="services" className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-6 md:px-12">
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="section-label">Services</p>
-          <h2 className="section-title mb-4">Your one stop shop</h2>
-          <p className="text-muted-foreground text-lg">Simplify post production</p>
+        <div className="mb-16">
+          <p className="section-label mb-4">Services</p>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+            What we do
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl">
+            End-to-end post-production. From the moment footage hits our drives to the
+            final export, we handle everything.
+          </p>
         </div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-0 mb-16 border-b border-border/30">
+        {/* Services List */}
+        <div className="border-t border-border/30">
           {services.map((service) => (
-            <button
+            <div
               key={service.id}
-              onClick={() => setActiveTab(service.id)}
-              className={`service-tab ${
-                activeTab === service.id ? "service-tab-active" : ""
-              }`}
+              className="group border-b border-border/30 py-8 md:py-10 grid grid-cols-12 gap-4 md:gap-8 items-start hover:bg-muted/5 transition-colors duration-300 -mx-4 px-4"
             >
-              {service.title}
-            </button>
-          ))}
-        </div>
+              {/* Number */}
+              <div className="col-span-1 text-muted-foreground/50 text-sm font-body">
+                {service.id}
+              </div>
 
-        {/* Content */}
-        {activeService && (
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Image */}
-            <div className="relative">
-              <img
-                src={activeService.image}
-                alt={activeService.title}
-                className="w-full max-w-md mx-auto"
-              />
-            </div>
-
-            {/* Text */}
-            <div>
-              {/* Bullets */}
-              <ul className="space-y-4 mb-8">
-                {activeService.bullets.map((bullet, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span className="text-foreground">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* Title */}
+              <div className="col-span-11 md:col-span-3">
+                <h3 className="text-xl md:text-2xl font-display font-semibold text-foreground">
+                  <span className="text-primary">{service.accent}</span>
+                  {service.title.replace(service.accent, "")}
+                </h3>
+              </div>
 
               {/* Description */}
-              <p className="text-muted-foreground leading-relaxed">
-                {activeService.description}
-              </p>
+              <div className="col-span-11 col-start-2 md:col-span-7 md:col-start-5">
+                <p className="text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Arrow */}
+              <div className="hidden md:flex col-span-1 justify-end">
+                <ArrowRight className="w-5 h-5 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+              </div>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </section>
   );
