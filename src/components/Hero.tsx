@@ -62,22 +62,22 @@ const Hero = () => {
           </video>
         ))}
         
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent z-20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background z-20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/30 to-transparent z-20" />
       </div>
 
       {/* Content */}
       <div className="relative z-30 container mx-auto px-6 md:px-12 pt-32 pb-20">
         <div className="max-w-4xl">
-          {/* Giant Title */}
-          <h1
-            className={`hero-title mb-6 transition-all duration-1000 ${
+          {/* Brand Mark */}
+          <div
+            className={`mb-6 transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
             style={{ transitionDelay: "200ms" }}
           >
-            PIXELNOVA
-          </h1>
+            <span className="text-xs tracking-[0.4em] uppercase text-primary/80 font-body block mb-2">Studio</span>
+          </div>
 
           {/* Role Tags */}
           <p
