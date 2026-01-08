@@ -20,20 +20,35 @@ const Hero = () => {
     }
   }, []);
 
-  const handleVideoEnd = useCallback((endedIndex: number) => {
-    const nextIndex = (endedIndex + 1) % videos.length;
+  // Preload next video slightly before current ends
+  const handleTimeUpdate = useCallback((index: number) => {
+    const video = videoRefs.current[index];
+    if (!video || index !== activeIndex) return;
     
-    // Start next video
-    if (videoRefs.current[nextIndex]) {
-      videoRefs.current[nextIndex].currentTime = 0;
-      videoRefs.current[nextIndex].play();
+    const timeRemaining = video.duration - video.currentTime;
+    const nextIndex = (index + 1) % videos.length;
+    const nextVideo = videoRefs.current[nextIndex];
+    
+    // Start next video 0.5s before current ends for seamless overlap
+    if (timeRemaining <= 0.5 && nextVideo && nextVideo.paused) {
+      nextVideo.currentTime = 0;
+      nextVideo.play();
     }
+  }, [activeIndex]);
+
+  const handleVideoEnd = useCallback((endedIndex: number) => {
+    if (endedIndex !== activeIndex) return;
     
-    // Switch active index after a brief moment to allow overlap
-    setTimeout(() => {
-      setActiveIndex(nextIndex);
-    }, 100);
-  }, []);
+    const nextIndex = (endedIndex + 1) % videos.length;
+    setActiveIndex(nextIndex);
+    
+    // Ensure next video is playing
+    const nextVideo = videoRefs.current[nextIndex];
+    if (nextVideo && nextVideo.paused) {
+      nextVideo.currentTime = 0;
+      nextVideo.play();
+    }
+  }, [activeIndex]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -53,8 +68,9 @@ const Hero = () => {
             muted
             playsInline
             preload="auto"
+            onTimeUpdate={() => handleTimeUpdate(index)}
             onEnded={() => handleVideoEnd(index)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
               index === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
             }`}
           >
