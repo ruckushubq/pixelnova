@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const services = [
   {
@@ -80,8 +80,11 @@ const services = [
 ];
 
 const Services = () => {
-  const [activeTab, setActiveTab] = useState("editing");
-  const activeService = services.find((s) => s.id === activeTab);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const toggleService = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   return (
     <section id="services" className="py-24 md:py-32 bg-background">
@@ -98,86 +101,98 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services List Overview */}
-        <div className="border-t border-border/30 mb-20">
-          {services.map((service) => (
-            <button
-              key={service.id}
-              onClick={() => setActiveTab(service.id)}
-              className={`group w-full text-left border-b border-border/30 py-6 md:py-8 grid grid-cols-12 gap-4 md:gap-8 items-start hover:bg-muted/5 transition-colors duration-300 -mx-4 px-4 ${
-                activeTab === service.id ? "bg-muted/10" : ""
-              }`}
-            >
-              {/* Number */}
-              <div className="col-span-1 text-muted-foreground/50 text-sm font-body">
-                {service.number}
-              </div>
+        {/* Services Accordion */}
+        <div className="border-t border-border/30">
+          {services.map((service) => {
+            const isExpanded = expandedId === service.id;
+            
+            return (
+              <div key={service.id} className="border-b border-border/30">
+                {/* Accordion Header */}
+                <button
+                  onClick={() => toggleService(service.id)}
+                  className={`group w-full text-left py-6 md:py-8 grid grid-cols-12 gap-4 md:gap-8 items-center hover:bg-muted/5 transition-colors duration-300 ${
+                    isExpanded ? "bg-muted/10" : ""
+                  }`}
+                >
+                  {/* Number */}
+                  <div className="col-span-1 text-muted-foreground/50 text-sm font-body">
+                    {service.number}
+                  </div>
 
-              {/* Title */}
-              <div className="col-span-10 md:col-span-3">
-                <h3 className="text-lg md:text-xl font-display font-semibold text-foreground">
-                  <span className={`${activeTab === service.id ? "text-primary" : "text-primary/70 group-hover:text-primary"} transition-colors`}>
-                    {service.accent}
-                  </span>
-                  {service.title.replace(service.accent, "")}
-                </h3>
-              </div>
+                  {/* Title */}
+                  <div className="col-span-10 md:col-span-3">
+                    <h3 className="text-lg md:text-xl font-display font-semibold text-foreground">
+                      <span className={`${isExpanded ? "text-primary" : "text-primary/70 group-hover:text-primary"} transition-colors`}>
+                        {service.accent}
+                      </span>
+                      {service.title.replace(service.accent, "")}
+                    </h3>
+                  </div>
 
-              {/* Description */}
-              <div className="hidden md:block col-span-7">
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {service.shortDesc}
-                </p>
-              </div>
+                  {/* Description */}
+                  <div className="hidden md:block col-span-7">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {service.shortDesc}
+                    </p>
+                  </div>
 
-              {/* Arrow */}
-              <div className="col-span-1 flex justify-end">
-                <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
-                  activeTab === service.id 
-                    ? "text-primary translate-x-1" 
-                    : "text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-1"
-                }`} />
+                  {/* Arrow */}
+                  <div className="col-span-1 flex justify-end">
+                    <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
+                      isExpanded 
+                        ? "text-primary rotate-180" 
+                        : "text-muted-foreground/50 group-hover:text-primary"
+                    }`} />
+                  </div>
+                </button>
+
+                {/* Accordion Content */}
+                <div
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                    isExpanded ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="pb-10 pt-4">
+                    <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+                      {/* Image */}
+                      <div className="relative">
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full max-w-md mx-auto"
+                        />
+                      </div>
+
+                      {/* Text */}
+                      <div>
+                        <h4 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">
+                          <span className="text-primary">{service.accent}</span>
+                          {service.title.replace(service.accent, "")}
+                        </h4>
+                        
+                        {/* Bullets */}
+                        <ul className="space-y-4 mb-8">
+                          {service.bullets.map((bullet, index) => (
+                            <li key={index} className="flex items-start gap-3">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                              <span className="text-foreground">{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {/* Description */}
+                        <p className="text-muted-foreground leading-relaxed">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </button>
-          ))}
+            );
+          })}
         </div>
-
-        {/* Detailed Content */}
-        {activeService && (
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center animate-fade-in">
-            {/* Image */}
-            <div className="relative">
-              <img
-                src={activeService.image}
-                alt={activeService.title}
-                className="w-full max-w-md mx-auto"
-              />
-            </div>
-
-            {/* Text */}
-            <div>
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">
-                <span className="text-primary">{activeService.accent}</span>
-                {activeService.title.replace(activeService.accent, "")}
-              </h3>
-              
-              {/* Bullets */}
-              <ul className="space-y-4 mb-8">
-                {activeService.bullets.map((bullet, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span className="text-foreground">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Description */}
-              <p className="text-muted-foreground leading-relaxed">
-                {activeService.description}
-              </p>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
