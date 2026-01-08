@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Play } from "lucide-react";
 import heroVideo1 from "@/assets/hero-video.mp4";
 import heroVideo2 from "@/assets/hero-video-2.mp4";
@@ -9,46 +9,42 @@ const videos = [heroVideo1, heroVideo2, heroVideo3, heroVideo4];
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  const currentVideoRef = useRef<HTMLVideoElement>(null);
+  const nextVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
-    // Start the first video
-    if (videoRefs.current[0]) {
-      videoRefs.current[0].play();
-    }
   }, []);
 
-  // Preload next video slightly before current ends
-  const handleTimeUpdate = useCallback((index: number) => {
-    const video = videoRefs.current[index];
-    if (!video || index !== activeIndex) return;
+  // Handle current video ending
+  const handleVideoEnd = () => {
+    if (isTransitioning) return;
     
-    const timeRemaining = video.duration - video.currentTime;
-    const nextIndex = (index + 1) % videos.length;
-    const nextVideo = videoRefs.current[nextIndex];
+    setIsTransitioning(true);
     
-    // Start next video 0.5s before current ends for seamless overlap
-    if (timeRemaining <= 0.5 && nextVideo && nextVideo.paused) {
-      nextVideo.currentTime = 0;
-      nextVideo.play();
+    // Start playing the next video (it's already preloaded)
+    if (nextVideoRef.current) {
+      nextVideoRef.current.play();
     }
-  }, [activeIndex]);
+    
+    // After fade transition, swap indices
+    setTimeout(() => {
+      setCurrentIndex(nextIndex);
+      setNextIndex((nextIndex + 1) % videos.length);
+      setIsTransitioning(false);
+    }, 800);
+  };
 
-  const handleVideoEnd = useCallback((endedIndex: number) => {
-    if (endedIndex !== activeIndex) return;
-    
-    const nextIndex = (endedIndex + 1) % videos.length;
-    setActiveIndex(nextIndex);
-    
-    // Ensure next video is playing
-    const nextVideo = videoRefs.current[nextIndex];
-    if (nextVideo && nextVideo.paused) {
-      nextVideo.currentTime = 0;
-      nextVideo.play();
+  // Preload next video when current starts playing
+  useEffect(() => {
+    if (nextVideoRef.current) {
+      nextVideoRef.current.load();
     }
-  }, [activeIndex]);
+  }, [nextIndex]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -59,24 +55,36 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Videos with Crossfade */}
+      {/* Background Videos */}
       <div className="absolute inset-0">
-        {videos.map((video, index) => (
-          <video
-            key={index}
-            ref={(el) => (videoRefs.current[index] = el)}
-            muted
-            playsInline
-            preload="auto"
-            onTimeUpdate={() => handleTimeUpdate(index)}
-            onEnded={() => handleVideoEnd(index)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
-              index === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-        ))}
+        {/* Current Video */}
+        <video
+          ref={currentVideoRef}
+          key={`current-${currentIndex}`}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
+            isTransitioning ? 'opacity-0' : 'opacity-100'
+          } z-10`}
+        >
+          <source src={videos[currentIndex]} type="video/mp4" />
+        </video>
+        
+        {/* Next Video (preloaded, fades in during transition) */}
+        <video
+          ref={nextVideoRef}
+          key={`next-${nextIndex}`}
+          muted
+          playsInline
+          preload="auto"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
+            isTransitioning ? 'opacity-100' : 'opacity-0'
+          } z-0`}
+        >
+          <source src={videos[nextIndex]} type="video/mp4" />
+        </video>
         
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background z-20" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/30 to-transparent z-20" />
