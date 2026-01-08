@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import serviceEditing from "@/assets/service-editing.png";
+import serviceColor from "@/assets/service-color.png";
+import serviceSound from "@/assets/service-sound.png";
+import serviceMotion from "@/assets/service-motion.png";
+import serviceProducing from "@/assets/service-producing.png";
 
 const services = [
   {
@@ -8,7 +13,7 @@ const services = [
     title: "Video Editing",
     accent: "Video",
     shortDesc: "Full post-production from assembly to final delivery. Narrative pacing, seamless transitions, and the polish that separates amateur from professional.",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b50365b67156937609a743_Asset%205%404x.png",
+    image: serviceEditing,
     bullets: [
       "Offline & Online Editing",
       "Skilled in Premiere Pro, Final Cut Pro X, and DaVinci Resolve",
@@ -23,7 +28,7 @@ const services = [
     title: "Color Grading",
     accent: "Color",
     shortDesc: "Cinematic color science that sets the mood. From LOG to final grade, we make every frame look exactly how it should feel.",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b508cff2877ee7c82d28a4_color%20grading.png",
+    image: serviceColor,
     bullets: [
       "Proficiency in DaVinci Resolve",
       "Visual style creation and shot matching",
@@ -38,7 +43,7 @@ const services = [
     title: "Sound Design",
     accent: "Sound",
     shortDesc: "Audio mixing, Foley, and soundscaping. Because great video is 50% what you hear. We make sure every sound hits right.",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b505eaeac4a26bc496a4ee_Asset%201%404x.png",
+    image: serviceSound,
     bullets: [
       "Professional audio mixing and mastering",
       "Foley and sound effect creation",
@@ -53,7 +58,7 @@ const services = [
     title: "Motion Graphics",
     accent: "Motion",
     shortDesc: "Titles, lower thirds, animated elements. When static isn't enough, we add movement that enhances without overwhelming.",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b505eaeac4a26bc496a4ee_Asset%201%404x.png",
+    image: serviceMotion,
     bullets: [
       "Skilled in After Effects and complimentary Adobe Suite products",
       "Supports with concept generation and art direction",
@@ -68,7 +73,7 @@ const services = [
     title: "Post Producing",
     accent: "Post",
     shortDesc: "Comprehensive project planning and coordination. Effective resource and budget management from start to finish.",
-    image: "https://cdn.prod.website-files.com/5dabd332d26b0a27c9d3ef10/64b50c73720955c1fec12eb4_Asset%203%404x.png",
+    image: serviceProducing,
     bullets: [
       "Comprehensive project planning and coordination",
       "Effective resource and budget management",
@@ -147,44 +152,48 @@ const Services = () => {
                   </div>
                 </button>
 
-                {/* Accordion Content */}
+                {/* Accordion Content - Expands directly under the row */}
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    isExpanded ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+                  className={`grid transition-all duration-500 ease-in-out ${
+                    isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
-                  <div className="pb-10 pt-4">
-                    <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-                      {/* Image */}
-                      <div className="relative">
-                        <img
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full max-w-md mx-auto"
-                        />
-                      </div>
+                  <div className="overflow-hidden">
+                    <div className="py-8 md:py-12 pl-0 md:pl-12">
+                      <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                        {/* Image */}
+                        <div className="relative order-2 md:order-1">
+                          <div className="rounded-lg overflow-hidden">
+                            <img
+                              src={service.image}
+                              alt={service.title}
+                              className="w-full h-auto"
+                            />
+                          </div>
+                        </div>
 
-                      {/* Text */}
-                      <div>
-                        <h4 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">
-                          <span className="text-primary">{service.accent}</span>
-                          {service.title.replace(service.accent, "")}
-                        </h4>
-                        
-                        {/* Bullets */}
-                        <ul className="space-y-4 mb-8">
-                          {service.bullets.map((bullet, index) => (
-                            <li key={index} className="flex items-start gap-3">
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                              <span className="text-foreground">{bullet}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        {/* Text */}
+                        <div className="order-1 md:order-2">
+                          <h4 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">
+                            <span className="text-primary">{service.accent}</span>
+                            {service.title.replace(service.accent, "")}
+                          </h4>
+                          
+                          {/* Bullets */}
+                          <ul className="space-y-4 mb-8">
+                            {service.bullets.map((bullet, index) => (
+                              <li key={index} className="flex items-start gap-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                <span className="text-foreground font-medium">{bullet}</span>
+                              </li>
+                            ))}
+                          </ul>
 
-                        {/* Description */}
-                        <p className="text-muted-foreground leading-relaxed">
-                          {service.description}
-                        </p>
+                          {/* Description */}
+                          <p className="text-muted-foreground leading-relaxed">
+                            {service.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
