@@ -1,4 +1,4 @@
-@import url('https://fonts.cdnfonts.com/css/gilroy-bold');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -42,8 +42,8 @@
     --glow-accent: 0 0 60px hsla(0, 72%, 51%, 0.3);
     
     /* Typography */
-    --font-display: 'Gilroy', sans-serif;
-    --font-body: 'Gilroy', sans-serif;
+    --font-display: 'Montserrat', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
 
     --sidebar-background: 220 20% 7%;
     --sidebar-foreground: 0 0% 98%;
