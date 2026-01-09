@@ -1,4 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+/* Gilroy Font Family */
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -42,8 +57,8 @@
     --glow-accent: 0 0 60px hsla(0, 72%, 51%, 0.3);
     
     /* Typography */
-    --font-display: 'Montserrat', sans-serif;
-    --font-body: 'Montserrat', sans-serif;
+    --font-display: 'Gilroy', sans-serif;
+    --font-body: 'Gilroy', sans-serif;
 
     --sidebar-background: 220 20% 7%;
     --sidebar-foreground: 0 0% 98%;
