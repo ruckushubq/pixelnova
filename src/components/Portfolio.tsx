@@ -153,7 +153,7 @@ const Portfolio = () => {
                 href={currentProject.videoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center bg-background/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 flex items-center justify-center bg-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               >
                 <div className="w-20 h-20 rounded-full bg-foreground/20 backdrop-blur-sm flex items-center justify-center border border-foreground/30">
                   <Play size={32} className="text-foreground" fill="currentColor" />
